@@ -15,6 +15,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // ROUTES
 
+app.get("/", (req, res) => {
+  res.render("index.html", {});
+});
+
 app.get("/api/notes", (req, res) => {
   fs.readFile("./db/db.json", "utf8", (err, data) => {
     if (err) {
