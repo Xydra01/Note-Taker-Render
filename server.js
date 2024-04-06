@@ -33,6 +33,7 @@ app.get("/notes", (req, res) => {
     }
 
     res.json(notes);
+    res.sendFile(path.join(__dirname, "notes.html"));
   });
 });
 
@@ -58,6 +59,8 @@ app.post("/notes", (req, res) => {
     }
 
     res.status(201).json(newNote);
+
+    res.sendFile(path.join(__dirname, "notes.html"));
   });
 });
 
