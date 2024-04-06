@@ -1,6 +1,7 @@
 // DEPENDENCIES
 const express = require("express");
 const fs = require("fs");
+const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 const PORT = process.env.PORT;
 
@@ -10,11 +11,9 @@ const app = express();
 
 // MIDDLEWARE
 
-// ROUTES
+app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req, res) => {
-  res.render("index.html", {});
-});
+// ROUTES
 
 app.get("/api/notes", (req, res) => {
   fs.readFile("./db/db.json", "utf8", (err, data) => {
