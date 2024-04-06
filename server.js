@@ -13,7 +13,7 @@ const app = express();
 // ROUTES
 
 app.get("/", (req, res) => {
-  res.render("index", {});
+  res.render("index.html", {});
 });
 
 app.get("/api/notes", (req, res) => {
@@ -35,7 +35,30 @@ app.get("/api/notes", (req, res) => {
   });
 });
 
-app.post("/api/notes", (req, res) => {});
+app.post("/api/notes", (req, res) => {
+  const { title, text } = req.body;
+
+  if (!title || !text) {
+    return res.status(400).json({ error: "Title and text are required" });
+  }
+
+  const newNote = {
+    id: uuidv4(),
+    title,
+    text,
+  };
+
+  noteData.push(newNote);
+
+  fs.writeFile("./db/db.json", JSON.stringify(noteData), (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Failed to save note" });
+    }
+
+    res.status(201).json(newNote);
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`app is running on port ${PORT}`);
