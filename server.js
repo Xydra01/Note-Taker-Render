@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.get("/api/notes", (req, res) => {
+app.get("/notes", (req, res) => {
   fs.readFile("./db/db.json", "utf8", (err, data) => {
     if (err) {
       console.error(err);
@@ -36,7 +36,7 @@ app.get("/api/notes", (req, res) => {
   });
 });
 
-app.post("/api/notes", (req, res) => {
+app.post("/notes", (req, res) => {
   const { title, text } = req.body;
 
   if (!title || !text) {
