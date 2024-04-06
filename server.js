@@ -13,7 +13,7 @@ const app = express();
 // ROUTES
 
 app.get("/", (req, res) => {
-  res.render("index.html", {});
+  res.render("index", {});
 });
 
 app.get("/api/notes", (req, res) => {
