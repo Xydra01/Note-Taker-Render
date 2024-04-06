@@ -10,13 +10,11 @@ const noteData = require("./db/db.json");
 const app = express();
 
 // MIDDLEWARE
-
 app.use(express.static(path.join(__dirname, "public")));
 
 // ROUTES
-
 app.get("/", (req, res) => {
-  res.render("index.html", {});
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.get("/api/notes", (req, res) => {
