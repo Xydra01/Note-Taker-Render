@@ -32,7 +32,6 @@ app.get("/notes", (req, res) => {
       return res.status(500).json({ error: "Failed to parse note data" });
     }
 
-    res.json(notes);
     res.sendFile(path.join(__dirname, "notes.html"));
   });
 });
